@@ -2,6 +2,7 @@
 
 ## 📋 Table of Contents
 - [Project Overview](#project-overview)
+- [Repository Structure](#repository-structure)
 - [Dataset Description](#dataset-description)
 - [Features and Target Variables](#features-and-target-variables)
 - [Model Architecture](#model-architecture)
@@ -25,6 +26,18 @@ This project implements a comprehensive **multi-task machine learning system** f
 - ✅ **Clinical Validation**: Based on established PHQ-9 clinical guidelines
 - ✅ **Comprehensive Evaluation**: Multiple performance metrics and cross-model comparisons
 - ✅ **Feature Engineering**: Clinically-informed feature creation and analysis
+
+## 🗂️ Repository Structure
+
+- `model.ipynb`, `model1.ipynb`, `model2.ipynb`: Jupyter notebooks covering different experimental tracks and training pipelines.
+- `PHQ-9_Dataset_5th Edition.csv`, `PHQ-9 NLP Dataset Collection.csv`: Core datasets used for training and evaluation.
+- `preprocessed_comments.pkl`: Cached preprocessed text features to speed up experimentation.
+- `bert_classifier_state_dict.pth`: Fine-tuned BERT sentiment/depression classifier weights.
+- `ensemble_meta_clf.joblib`: Saved meta-classifier for ensemble stacking.
+- `label_encoder.pkl`: Label encoder mapping for categorical outputs.
+- `saved_tokenizer/`: Tokenizer config and vocab paired with the BERT checkpoint.
+- `NotoSansBengali-Regular.ttf`: Font resource for Bengali text visualization.
+- `Thesis_Proposal_Shahriar_and_Abdullah.pptx`: Project proposal slides.
 
 ## 📊 Dataset Description
 
@@ -199,6 +212,25 @@ data = pd.read_csv('PHQ-9_Dataset_5th Edition.csv')
 ```python
 # All models are automatically trained in the notebook
 # Run cells sequentially for complete pipeline
+```
+
+### 2.1 Using Pretrained Artifacts
+```python
+# Load tokenizer and BERT classifier weights
+from transformers import BertForSequenceClassification, BertTokenizer
+
+tokenizer = BertTokenizer.from_pretrained("saved_tokenizer")
+model = BertForSequenceClassification.from_pretrained(
+    pretrained_model_name_or_path=None,
+    state_dict=torch.load("bert_classifier_state_dict.pth"),
+    num_labels=2,
+)
+
+# Load ensemble meta-classifier and label encoder
+import joblib
+
+meta_clf = joblib.load("ensemble_meta_clf.joblib")
+label_encoder = joblib.load("label_encoder.pkl")
 ```
 
 ### 3. Prediction Examples
