@@ -374,9 +374,9 @@ If you use this work in your research, please cite:
 
 ## 📞 Contact and Support
 
-- **Author**: Your Name
-- **Email**: your.email@university.edu
-- **Institution**: Your University
+- **Author**: MD Abdullah Ibne Aziz, Shahriar Ahmed Fahim
+- **Email**: aziz.miraz123@gmail.com, 22203202@iubat.edu
+- **Institution**: International University of Business Science and Technology
 - **Project Repository**: https://github.com/yourusername/PHQ-9-Thesis-
 
 ### Acknowledgments
